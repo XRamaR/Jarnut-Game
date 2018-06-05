@@ -24,7 +24,6 @@ Player::~Player()
 void Player::Update(float deltaTime)
 {
 	velocity.x *= 0.3f;
-	//sf::Vector2f movement(0.0f, 0.0f);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 	{
 		velocity.x -= speed;
@@ -73,8 +72,8 @@ void Player::onColiision(sf::Vector2f direction)
 	}
 	if (direction.y < 0.0f)
 	{
-		inAir = false;
 		velocity.y = 0.0f;
+		canJump = true;
 		
 	}
 	else if (direction.y > 0.0f)

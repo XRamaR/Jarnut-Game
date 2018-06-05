@@ -29,10 +29,10 @@ int main()
 
 	std::vector<Platform> platforms;
 
-	Player player(&playerTexture, sf::Vector2u(3, 9), 0.3f, 90.0f, 20.0f);
+	Player player(&playerTexture, sf::Vector2u(3, 9), 0.3f, 90.0f, 150.0f);
 
 	platforms.push_back(Platform(&wallTexture, sf::Vector2f(650.0f, 30.0f), sf::Vector2f(320.0f, 470.0f)));
-	platforms.push_back(Platform(&wallTexture, sf::Vector2f(200.0f, 30.0f), sf::Vector2f(160.0f, 240.0f)));
+	platforms.push_back(Platform(&wallTexture, sf::Vector2f(200.0f, 30.0f), sf::Vector2f(280.0f, 340.0f)));
 	platforms.push_back(Platform(&wallTexture, sf::Vector2f(30.0f, 480.0f), sf::Vector2f(630.0f, 240.0f)));
 	platforms.push_back(Platform(&wallTexture, sf::Vector2f(30.0f, 480.0f), sf::Vector2f(10.0f, 240.0f)));
 
@@ -62,9 +62,11 @@ int main()
 		player.Update(deltaTime);
 		sf::Vector2f direction;
 		Collider x = player.GetCollider();
+
 		for (Platform &platform : platforms)
 		{
-			platform.GetCollider().CheckCollision(x, direction, 1.0f);
+			if (platform.GetCollider().CheckCollision(x, direction, 1.0f))
+				player.onColiision(direction);
 		}
 
 		window.clear();
