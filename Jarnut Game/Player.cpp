@@ -39,24 +39,7 @@ void Player::Update(float deltaTime)
 		velocity.y = -sqrtf(2.0f*981.0f*jumpHeight);
 	}
 	velocity.y += 981.0f*deltaTime;
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-	{
-		movement.y += speed * deltaTime;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-	{
-		movement.y -= speed * deltaTime;
-	}
-	if (movement.x == 0.0f&&movement.y == 0.0f)
-		row = 0;
-	else if (movement.y == 0.0f)
-	{
-		row = 1;
-		if (movement.x > 0)
-			faceRigth = true;
-		else
-			faceRigth = false;
-	}*/
+	
 	if (velocity.x == 0.0f)
 		row = 0;
 	else
