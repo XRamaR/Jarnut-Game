@@ -84,7 +84,7 @@ void Player::onColiision(sf::Vector2f direction)
 bool Player::OutOfScreen()
 {
 	sf::Vector2f position = body.getPosition();
-	if (position.y > 480.0f || position.x > 640.0f || position.x < 0 || position.y < 0)
+	if (position.y > 480.0f || position.x > 640.0f || position.x < 0)
 		return true;
 	return false;
 }
