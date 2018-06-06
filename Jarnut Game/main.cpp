@@ -69,20 +69,19 @@ int main()
 		player.Update(deltaTime);
 		sf::Vector2f direction;
 		Collider x = player.GetCollider();
-
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::C))
+			window.close();
 		for (Platform &platform : platforms)
 		{
 			if (platform.GetCollider().CheckCollision(x, direction, 1.0f))
 				player.onColiision(direction);
 		}
-		Collider y = player.GetCollider();
 		window.clear();
 		window.draw(background);
 		player.Draw(window);
 		for (Platform &platform : platforms)
 		{
 			platform.Move(sf::Vector2f(0.0f, 0.03f));
-
 		}
 		for (Platform &platform : platforms)
 		{
@@ -92,7 +91,10 @@ int main()
 		{
 			platform.Draw(window);
 		}
-		
+		if (player.OutOfScreen())
+		{
+			window.close();
+		}
 		window.display();
 	}
 	return 0;

@@ -12,13 +12,14 @@ public:
 	void Draw(sf::RenderWindow& window);
 	void onColiision(sf::Vector2f direction);
 	void foundKey(bool red, bool green, bool blue);
+	bool OutOfScreen();
 
 	Collider GetCollider()
 	{
 		return Collider(body);
 	}
 public:
-	bool inAir;
+	bool onScreen = true;
 private:
 	sf::RectangleShape body;
 	Animation animation;
@@ -26,7 +27,6 @@ private:
 	float speed;
 	bool faceRigth;
 	sf::Vector2f velocity;
-	sf::Vector2f position = body.getPosition();
 	bool canJump;
 	float jumpHeight;
 	bool redKey;

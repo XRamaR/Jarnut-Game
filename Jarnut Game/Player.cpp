@@ -32,13 +32,13 @@ void Player::Update(float deltaTime)
 	{
 		velocity.x += speed;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)&&canJump)
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && canJump)
 	{
 		canJump = false;
 		velocity.y = -sqrtf(2.0f*981.0f*jumpHeight);
 	}
 	velocity.y += 981.0f*deltaTime;
-	
+
 	if (velocity.x == 0.0f)
 		row = 0;
 	else
@@ -50,7 +50,7 @@ void Player::Update(float deltaTime)
 			faceRigth = false;
 	}
 
-	animation.Update(row, deltaTime, faceRigth,inAir);
+	animation.Update(row, deltaTime, faceRigth);
 	body.setTextureRect(animation.uvRect);
 	body.move(velocity*deltaTime);
 }
@@ -74,7 +74,6 @@ void Player::onColiision(sf::Vector2f direction)
 	{
 		velocity.y = 0.0f;
 		canJump = true;
-		
 	}
 	else if (direction.y > 0.0f)
 	{
@@ -82,12 +81,10 @@ void Player::onColiision(sf::Vector2f direction)
 	}
 }
 
-void Player::foundKey(bool red, bool green, bool blue)
+bool Player::OutOfScreen()
 {
-	if (red)
-		redKey = true;
-	if (green)
-		greenKey = true;
-	if (blue)
-		blueKey = true;
+	sf::Vector2f position = body.getPosition();
+	if (position.y > 480.0f || position.x > 640.0f || position.x < 0 || position.y < 0)
+		return true;
+	return false;
 }
