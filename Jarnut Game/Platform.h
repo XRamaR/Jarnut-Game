@@ -13,6 +13,12 @@ public:
 	{
 		return Collider(body);
 	}
+	void Move(sf::Vector2f direction)
+	{
+		this->body.move(direction);
+		/*sf::Vector2f position = body.getPosition();
+		position += direction;*/
+	}
 
 private:
 		sf::RectangleShape body;

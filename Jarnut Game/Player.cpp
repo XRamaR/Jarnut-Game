@@ -81,3 +81,13 @@ void Player::onColiision(sf::Vector2f direction)
 		velocity.y = 0.0f;
 	}
 }
+
+void Player::foundKey(bool red, bool green, bool blue)
+{
+	if (red)
+		redKey = true;
+	if (green)
+		greenKey = true;
+	if (blue)
+		blueKey = true;
+}

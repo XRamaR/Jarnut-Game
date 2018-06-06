@@ -11,11 +11,8 @@ public:
 	void Update(float deltaTime);
 	void Draw(sf::RenderWindow& window);
 	void onColiision(sf::Vector2f direction);
+	void foundKey(bool red, bool green, bool blue);
 
-	sf::Vector2f GetPosition()
-	{
-		return body.getPosition();
-	}
 	Collider GetCollider()
 	{
 		return Collider(body);
@@ -29,7 +26,11 @@ private:
 	float speed;
 	bool faceRigth;
 	sf::Vector2f velocity;
+	sf::Vector2f position = body.getPosition();
 	bool canJump;
 	float jumpHeight;
+	bool redKey;
+	bool blueKey;
+	bool greenKey;
 };
 
