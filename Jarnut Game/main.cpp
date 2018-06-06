@@ -20,6 +20,13 @@ int main()
 	sf::Texture platformTexture;
 	sf::Texture endingScreenTexture;
 
+	sf::Font font;
+	sf::Text score;
+	sf::Text grats;
+
+	//font.loadFromFile("Stencilia-A.ttf");
+	font.loadFromFile("Plumpfull.ttf");
+	
 	playerTexture.loadFromFile("droid_from_android.png");
 	backTexture.loadFromFile("background.png");
 	wallTexture.loadFromFile("wall.png");
@@ -33,6 +40,7 @@ int main()
 	std::vector<Platform> walls;
 
 	Player player(&playerTexture, sf::Vector2u(3, 9), 0.3f, 130.0f, 160.0f);
+
 
 	platforms.push_back(Platform(&platformTexture, sf::Vector2f(650.0f, 30.0f), sf::Vector2f(320.0f, 470.0f))); //floor
 	platforms.push_back(Platform(&platformTexture, sf::Vector2f(260.0f, 30.0f), sf::Vector2f(320.0f, 340.0f)));
@@ -70,6 +78,7 @@ int main()
 	{
 		deltaTime = clock.restart().asSeconds();
 		sf::Event evet;
+		//window.setFramerateLimit(90);
 		while (window.pollEvent(evet))
 		{
 			if (evet.type == evet.Closed)
@@ -94,8 +103,8 @@ int main()
 		for (Platform &platform : platforms)
 		{
 			sf::Time time = clock.getElapsedTime();
-			float timeAs = time.asMilliseconds;
-			platform.Move(sf::Vector2f(0.0f, 0.05f+timeAs));
+			float timeAs = time.asMilliseconds();
+			platform.Move(sf::Vector2f(0.0f,0.05f));
 		}
 		for (Platform &platform : platforms)
 		{
@@ -109,6 +118,21 @@ int main()
 		{
 			window.clear();
 			window.draw(endingScreen);
+			grats.setString("SCORE:");
+			grats.setFont(font);
+			grats.setCharacterSize(70);
+			grats.setPosition(200.0f, 330.0f);
+			grats.setOutlineThickness(2.0f);
+			std::string score_s = std::to_string(player.points);
+			score.setString(score_s);
+			score.setFont(font);
+			score.setCharacterSize(64);
+			score.setPosition(230.0f,400.0f);
+			score.setFillColor(sf::Color::White);
+			score.setOutlineColor(sf::Color::Black);
+			score.setOutlineThickness(2.0f);
+			window.draw(grats);
+			window.draw(score);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 				window.close();
 		}

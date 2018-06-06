@@ -11,7 +11,6 @@ public:
 	void Update(float deltaTime);
 	void Draw(sf::RenderWindow& window);
 	void onColiision(sf::Vector2f direction);
-	void foundKey(bool red, bool green, bool blue);
 	bool OutOfScreen();
 
 	Collider GetCollider()
@@ -20,6 +19,7 @@ public:
 	}
 public:
 	bool onScreen = true;
+	int points = 4000;
 private:
 	sf::RectangleShape body;
 	Animation animation;
@@ -29,8 +29,5 @@ private:
 	sf::Vector2f velocity;
 	bool canJump;
 	float jumpHeight;
-	bool redKey;
-	bool blueKey;
-	bool greenKey;
 };
 
